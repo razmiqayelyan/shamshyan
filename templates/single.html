@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ new.title }}</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic|Roboto:400,300,700' rel='stylesheet' type='text/css'>
+	<!-- Animate -->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<!-- Icomoon -->
+	<link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+	<!-- Modernizr JS -->
+	<script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
+</head>
+<body>
+	<a class="btn btn-light btn-sm" href="{% url 'index' %}"> < Back</a>
+	<center>
+
+	<div class="card mt-3" style="width: 45rem;">
+  <img src="{{ new_one.image.url }}" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{ new_one.title }}</h5>
+    <p class="card-text">{{ new_one.text }}</p>
+    {% if new_one.user.username == user.username %}
+    <a href="{% url 'delete' new_one.id %}" class="btn btn-danger">Delete</a>
+    {% endif %}
+  </div>
+</div>
+</center>
+
+<br>
+<center><h3>These posts may interest you too</h3></center>
+<br>
+<div class="container-fluid">
+		<div class="row fh5co-post-entry">
+			{% for new in news %}
+			{% if new.id != new_one.id %}
+<!-- 			sksuma stexic -->
+			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+				<figure>
+					<a href="{% url 'detail' new.id new.category.slug %}"><img src="{{ new.image.url }}" alt="Image" class="img-responsive"></a>
+				</figure>
+				<span class="fh5co-meta"><a>{{ new.title }}</a></span>
+				
+				<span  class="fh5co-meta fh5co-date">{{ new.date }}</span>
+			</article>
+			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
+			{% endif %}
+			{% endfor %}
+</body>
+	<!-- jQuery -->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<!-- jQuery Easing -->
+	<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+	<!-- Main JS -->
+	<script src="{% static 'js/main.js' %}"></script>
+</html>

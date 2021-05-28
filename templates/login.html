@@ -1,0 +1,202 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Profile</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+	
+</head>
+<body>
+
+
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		{% if x %}
+
+	</div>
+	<div class="form-container sign-in-container">
+		<form method="POST">
+			{% csrf_token %}
+			<h3>Reset Password</h3>
+			
+			
+			<input type="text" name="Username" placeholder="Username" />
+			{% if messages %}
+			{% for message in messages %}
+
+			<p>{{ message }}</p>
+			{% endfor %}
+			{% endif %}
+			<a href="{% url 'login' %}">Login?</a>
+			
+			<button type="submit">Continue</button>
+		</form>
+
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Friend!</h1>
+				<p>Enter Your Username To Change Your Password</p>
+				
+			</div>
+		</div>
+	</div>
+</div>	
+		{% elif l %}
+			</div>
+	<div class="form-container sign-in-container">
+		<form method="POST">
+			{% csrf_token %}
+			<h3>Confirm Email</h3>
+			
+			
+			<input type="text" name="Email_confirm" placeholder="Security Number" />
+			{% if messages %}
+			{% for message in messages %}
+
+			<p>{{ message }}</p>
+			{% endfor %}
+			{% endif %}
+			
+			<br>
+			
+			<button type="submit">Confirm</button>
+		</form>
+
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Friend!</h1>
+				<p>Security Code Sended To Your Email Enter Here To Verification Your Email</p>
+				
+			</div>
+		</div>
+	</div>
+</div>	
+	
+
+		{% elif y %}
+		</div>
+	<div class="form-container sign-in-container">
+		<form method="POST">
+			{% csrf_token %}
+			<h1>New Password</h1>
+			
+			
+			<input type="password" name="Password" placeholder="Password" />
+			<input type="password" name="Password_c" placeholder="Password" />
+			<input type="text" name="Reset_email" placeholder="Email Security Numbers" />
+			
+			{% if messages %}
+			{% for message in messages %}
+
+			<p>{{ message }}</p>
+			{% endfor %}
+			{% endif %}
+			<a href="{% url 'login' %}">Login?</a>
+			
+			<button type="submit">Submit</button>
+		</form>
+
+	</div>
+
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h2>Dont Worry,Be Happy!</h2>
+				<p>Enter Your Password,Confirm Password and Security Numbers Which Was Sented To Your Email</p>
+				
+			</div>
+		</div>
+	</div>
+</div>
+		{% else %}
+		<form method="POST" action="{% url 'login' %}">
+			<h1>Create Account</h1>
+			{% csrf_token %}
+			
+			<span>Please Specify a Valid Email</span>
+			<input type="text" name="Username_up" placeholder="Username" />
+			<input type="email" name="Email_up" placeholder="Email" />
+			<input type="password" name="Password_up" placeholder="Password" />
+
+			<button type="submit">Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form method="POST">
+			{% csrf_token %}
+			<h1>Sign in</h1>
+			
+			
+			<input type="text" name="Username" placeholder="Username" />
+			<input type="password" name="Password" placeholder="Password" />
+			{% if messages %}
+			{% for message in messages %}
+
+			<p>{{ message }}</p>
+			{% endfor %}
+			{% endif %}
+			<a href="{% url 'reset' %}">Forgote Password?</a>
+			
+			<button type="submit">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and join us</p>
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+<footer>   
+	
+</footer>
+
+
+</body>
+<script type="text/javascript">
+		const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+
+
+
+</script>
+</html>

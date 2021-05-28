@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>RBBC.com</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+	<meta name="author" content="FREEHTML5.CO" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- 
+	////////////////////////////////////////////////////// 
+
+	FREE HTML5 TEMPLATE 
+	DESIGNED & DEVELOPED by FREEHTML5.CO
+		 input
+	Website: 		http://freehtml5.co/
+	Email: 			info@freehtml5.co
+	Twitter: 		http://twitter.com/fh5co
+	Facebook: 		https://www.facebook.com/fh5co
+
+	//////////////////////////////////////////////////////
+	 -->
+
+  	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic|Roboto:400,300,700' rel='stylesheet' type='text/css'>
+	<!-- Animate -->
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+	<!-- Icomoon -->
+	<link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+	<!-- Modernizr JS -->
+	<script src="{% static 'js/modernizr-2.6.2.min.js' %}"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+
+	</head>
+	<body>
+
+<!-- 		ete usery login exaca nor -->
+	{%  if user.is_authenticated %}
+	<div id="fh5co-offcanvas">
+		<a href="#" class="fh5co-close-offcanvas js-fh5co-close-offcanvas"><span><i class="icon-cross3"></i> <span>Close</span></span></a>
+		<div class="fh5co-bio">
+			{% if verif.verificated == False %}
+
+			<a class="btn btn-danger btn-sm">Email Doesn't Confirmed</a><br>
+				{% endif %}
+			<figure>
+
+				<img src="{{ verif.image.url }}" alt="Whats Happend?" class="img-responsive">
+			</figure>
+				
+				<form method="POST" enctype="multipart/form-data">
+					{% csrf_token %}
+					<input type="file" name="Profile_Image">
+					<button type="submit" class="btn btn-primary btn-sm">Change Profile Image</button>
+				</form>
+				 {% for message in messages %}
+				 	{{ message }}
+				 {% endfor %}
+		
+			<h3 class="heading">About Me</h3>
+			<h2>{{ user.username|title }}</h2>
+			<h3>Shefna Ste Vopshm</h3>
+			<a class="btn btn-warning btn-sm" href="{% url 'logout' %}">Logout</a>
+			<ul class="fh5co-social">
+				<!-- li><a href="#"><i class="icon-mail"></i></a></li>
+				<li><a href="#"><i class="icon-facebook"></i></a></li>
+				<li><a href="#"><i class="icon-instagram"></i></a></li> -->
+			</ul>   
+			
+		</div>
+
+		<div class="fh5co-menu">
+			<div class="fh5co-box">
+				<h3 class="heading">Categories</h3>
+				<ul>
+						
+						{% for c in categories %}
+						<li><a href="{% url 'kategorya' c.slug %}">{{ c }}</a></li>
+						{% empty %}
+						<li><center><h3>Empty</h3></center></li>
+						{% endfor %}
+						
+						
+				</ul>
+			</div>
+			
+		</div>
+	</div>
+	<!-- 		ete usery login exaca nor -->
+
+	<!-- END #fh5co-offcanvas -->
+
+	<header id="fh5co-header">
+		
+		<div class="container-fluid">
+
+			<div class="row">
+				<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle"><i></i></a>
+				<ul class="fh5co-social">
+					<li><a target="_blank" href="https://mail.google.com/mail/u/0/#inbox"><i class="icon-mail"></i></a></li>
+					<li><a target="_blank" href="https://www.facebook.com/raz.miqaelyan"><i class="icon-facebook"></i></a></li>
+					<li><a target="_blank" href="https://instagram.com/razmiqayelyan?utm_medium=copy_link"><i class="icon-instagram"></i></a></li>
+				</ul>
+				<div class="col-lg-12 col-md-12 text-center">
+					<h1 id="fh5co-logo"><a href="{% url 'index' %}">RBBC <sup>TM</sup></a></h1>
+				</div>
+
+				<form class="d-flex" method="get" action="/search">
+					
+			        <input style="position: relative;top: -50px;left: 50px;"  class="form-control me-2" type="search" name="query" id='query' placeholder="Search" aria-label="Search">
+			        <button style="width: 20px;position: relative;top: -48px;left: 4px;"  class="btn btn-link" type="submit"><i class="fa fa-search"></i></button>
+			      
+			     </form>
+			</div>
+		
+		</div>
+
+
+	</header>
+	{% else %}
+
+	<!-- END #fh5co-offcanvas -->
+
+	<header id="fh5co-header">
+		
+		<div class="container-fluid">
+
+			<div class="row">
+				
+				<ul class="fh5co-social">
+					
+					<li><a href="{% url 'login' %}"><i class="fa fa-sign-in"></i></a></li>
+				</ul>
+				
+				<div class="col-lg-12 col-md-12 text-center">
+					<h1 id="fh5co-logo"><a>RBBC <sup>TM</sup></a></h1>
+				</div>
+
+			</div>
+		
+		</div>
+
+
+	</header>
+
+
+	<!-- END #fh5co-header -->
+	{% endif %}
+
+{% if  news %}	
+	<div class="container-fluid">
+		<div class="row fh5co-post-entry">
+
+
+			{% for new in news %}
+
+<!-- 			sksuma stexic -->
+			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+				<figure>
+					<a href="{% url 'detail' new.id new.category.slug %}"><img src="{{ new.image.url }}" alt="Image" class="img-responsive"></a>
+				</figure>
+				<span class="fh5co-meta"><a>{{ new.title }}</a></span>
+				<h5 class="fh5co-article-title"><a>Category: <a href="{% url 'kategorya' new.category.slug %}"><strong>{{ new.category.name }}&#174;</strong></a></a></h5>
+				<span  class="fh5co-meta fh5co-date">{{ new.date }}</span>
+			</article>
+		<!-- 	mijev stex -->
+			{% empty %}
+						<center><h3>Dont Have Any News In This Category</h3></center>
+			{% endfor %}
+			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
+		{% elif allPosts %}
+		<div class="container-fluid">
+		<div class="row fh5co-post-entry">
+
+
+			{% for new in allPosts %}
+
+<!-- 			sksuma stexic -->
+			<article class="col-lg-3 col-md-3 col-sm-3 col-xs-6 col-xxs-12 animate-box">
+				<figure>
+					<a href="{% url 'detail' new.id new.category.slug %}"><img src="{{ new.image.url }}" alt="Image" class="img-responsive"></a>
+				</figure>
+				<span class="fh5co-meta"><a>{{ new.title }}</a></span>
+				<h5 class="fh5co-article-title"><a>Category: <a href="{% url 'kategorya' new.category.slug %}"><strong>{{ new.category.name }}&#174;</strong></a></a></h5>
+				<span  class="fh5co-meta fh5co-date">{{ new.date }}</span>
+			</article>
+		<!-- 	mijev stex -->
+			{% empty %}
+						<center><h3>Dont Have Any News</h3></center>
+			{% endfor %}
+			<div class="clearfix visible-lg-block visible-md-block visible-sm-block visible-xs-block"></div>
+		{% endif %}
+
+
+			
+			<div class="clearfix visible-xs-block"></div>
+		</div>
+	</div>
+
+	<footer id="fh5co-footer">
+		<p><small>&copy; 2021. Free Site For News. <br> Designed by <a href="/" target="_blank">RBBC.com</a></small></p>
+	</footer>
+
+
+	
+	<!-- jQuery -->
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<!-- jQuery Easing -->
+	<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
+	<!-- Main JS -->
+	<script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+</html>
+
